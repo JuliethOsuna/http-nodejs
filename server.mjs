@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import { fs } from 'fs';
+const fs = require('fs');
 
 createServer((req, res) => {
   res.statusCode = 200;
