@@ -1,6 +1,16 @@
 import { createServer } from 'http';
+import { fs } from 'fs';
 
 createServer((req, res) => {
-  res.write('Hello World!');
-  res.end();
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/javascript');
+  try {
+    const jsFile = fs.readFileSync('main.js');
+    res.write(jsFile);
+    res.end();
+  }catch(e) {
+      res.statusCode = 404;
+      res.write('Bad request');
+      res.end();
+  }
 }).listen(process.env.PORT);
